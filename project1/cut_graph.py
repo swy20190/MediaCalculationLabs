@@ -45,6 +45,9 @@ class CutGraph:
                         (current_vertex[1]==dst_coordinate[1] and current_vertex[0]==dst_coordinate[0]+1)):
                     self.side_set.append(Side(i, j, self.measure(current_vertex, dst_coordinate, img, patch, offset_i, offset_j)))
 
+    def cut(self):
+        
+
 
 class Side:
     index_start = 0

@@ -6,15 +6,33 @@ import numpy as np
 def complete(img, size, mode="random"):
     """
     :param img: the src texture
-    :param size: size of result
+    :param size: size of result (a triple)
     :param mode: mode of patch placement
     :return: the completed image
     """
     completed_img = np.zeros(size)
-    height, width, channel = img.shape
+    patch_height, patch_width, channel = img.shape
+    img_height, img_width, img_channel = size
     if mode == "random":
         # flag_matrix: to record the already generated pixels
-        flag_matrix = np.zeros((height, width))
+        flag_matrix = np.zeros((img_height, img_width))
+        while np.count_nonzero(flag_matrix) < flag_matrix.size:
+            offset_i = 0
+            offset_j = 0
+            while check_full_overlap(flag_matrix, (offset_i, offset_j), patch_height, patch_width):
+                offset_i = int(random.random() * img_height)
+                offset_j = int(random.random() * img_width)
+            if check_overlap(flag_matrix, (offset_i, offset_j), patch_height, patch_width):
+
+            else:
+                real_bottom = min(img_height, offset_i + patch_height)
+                real_right = min(img_width, offset_j + patch_width)
+                for i in range(offset_i, real_bottom):
+                    for j in range(offset_j, real_right):
+                        flag_matrix[i][j] = 1
+                        completed_img[i][j] = img[i-offset_i][j-offset_j]
+
+
     return completed_img
 
 
