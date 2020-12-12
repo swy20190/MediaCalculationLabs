@@ -84,7 +84,7 @@ def check_full_overlap(bit_map, coordinate, patch_height, patch_width):
     :param coordinate: the coordinate (left-top) of the patch to be placed
     :param patch_height: height of the patch
     :param patch_width: width of the patch
-    :return: whether the patch if fully covered by the old bit map
+    :return: whether the patch is fully covered by the old bit map
     """
     full_overlap = True
     height, width = bit_map.shape

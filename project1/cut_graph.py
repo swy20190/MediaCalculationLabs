@@ -1,4 +1,6 @@
 import numpy as np
+from pygraph.classes.digraph import digraph
+from pygraph.algorithms.minmax import maximum_flow
 
 
 class CutGraph:
@@ -53,7 +55,18 @@ class CutGraph:
         :return: a list of triple (i, j, flag), flag=0 means
         img[i][j] is old img, flag=1 means img[i][j] is new patch
         """
+        gr = digraph()
+        gr.add_nodes(self.vertex_set)
+        for side in self.side_set:
+            gr.add_edge((side.index_start, side.index_end), wt=side.weight)
+        flow, cuts = maximum_flow(gr, -1, -2)
         coordinate_paint_list = []
+        for k, v in cuts:
+            if k != -1 and k != -2:
+                if v == -1:
+                    coordinate_paint_list.append((self.coordinate_set[k][0], self.coordinate_set[k][1], 0))
+                elif v == -2:
+                    coordinate_paint_list.append((self.coordinate_set[k][0], self.coordinate_set[k][1], 1))
         return coordinate_paint_list
 
 
