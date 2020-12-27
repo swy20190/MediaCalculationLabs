@@ -8,7 +8,7 @@ def calc_energy_matrix(img_matrix):
     :return: numpy matrix of energy
     """
     height, width, channel = img_matrix.shape
-    energy_matrix = np.zeros(height, width)
+    energy_matrix = np.zeros((height, width))
     for i in range(1, height-1):
         for j in range(1, width-1):
             grad_x = 0
