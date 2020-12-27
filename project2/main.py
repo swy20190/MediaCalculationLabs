@@ -5,7 +5,7 @@ from img_energy import calc_energy_matrix
 
 
 if __name__ == '__main__':
-    img = Image.open('data/destroyer.jpg')
+    img = Image.open('data/carrier.jpg')
     img = np.array(img)
     for i in range(200):
         energy_matrix = calc_energy_matrix(img)
@@ -14,4 +14,4 @@ if __name__ == '__main__':
 
     img = Image.fromarray(np.uint8(img))
     img.show()
-    img.save("output/destroyer.jpg")
+    img.save("output/carrier.jpg")
